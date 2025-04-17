@@ -1,2 +1,19 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+@theme {
+    --color-dark: #2b2f2d;
+    --color-bright: #e6e6e6;
+    --color-light: #f4ebd9;
+    --color-primary: #02427f;
+    --color-primary-light: #7ca7d4;
+    --color-secondary: #9e140d;
+    --color-secondary-light: #c66313;
+
+    --screens-sm: 640px;
+    --screens-md: 768px;
+    --screens-lg: 1024px;
+    --screens-xl: 1280px;
+
+    --spacing-sm: 640px;
+}
