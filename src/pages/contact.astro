@@ -6,9 +6,9 @@ import { actions } from "astro:actions";
 const emailResult = Astro.getActionResult(actions.emailActions.send);
 if (emailResult) {
   console.log(emailResult);
-  if (emailResult.status === "success") {
+  if (emailResult.data?.status === "success") {
     console.log("Email sent successfully!");
-  } else if (emailResult.status === "error") {
+  } else if (emailResult.data?.status === "error") {
     console.error("Error sending email:", emailResult.error);
   }
 }
@@ -30,6 +30,40 @@ if (emailResult) {
         formulaire ci-dessous.
       </p>
       <form method="POST" action={actions.emailActions.send} class="space-y-8">
+        <div>
+          <div class="flex items-center justify-between gap-8">
+            <div class="w-full">
+              <label
+                for="firstname"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Votre prénom</label
+              >
+              <input
+                type="text"
+                id="firstname"
+                name="firstname"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                placeholder="prénom"
+                required
+              />
+            </div>
+            <div class="w-full">
+              <label
+                for="lastname"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Votre nom</label
+              >
+              <input
+                type="text"
+                id="lastname"
+                name="lastname"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                placeholder="nom"
+                required
+              />
+            </div>
+          </div>
+        </div>
         <div>
           <label
             for="email"
@@ -72,6 +106,20 @@ if (emailResult) {
             name="message"
             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
             placeholder="Votre message..."></textarea>
+        </div>
+        <div class="flex items-center">
+          <input
+            id="link-checkbox"
+            type="checkbox"
+            name="save"
+            class="w-4 h-4 text-primary-light bg-gray-100 border-gray-300 rounded-sm focus:ring-primary dark:focus:ring-primary dark:ring-offset-primary focus:ring dark:bg-primary dark:border-primary"
+          />
+          <label
+            for="link-checkbox"
+            class="ms-2 text-sm font-medium text-gray-900 dark:text-bright"
+            >Ajouter mon adresse mail dans la liste des contacts de l'assocition
+            pour être informé des projets futurs</label
+          >
         </div>
         <button
           type="submit"
